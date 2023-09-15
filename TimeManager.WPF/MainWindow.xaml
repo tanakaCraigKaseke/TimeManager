@@ -1,0 +1,30 @@
+﻿<Window x:Class="TimeManager.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:validators="clr-namespace:TimeManager.MainLibrary.Helpers.Validators;assembly=TimeManager.MainLibrary" d:DataContext="{d:DesignInstance Type=validators:ModuleValidator}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                            Path=(Validation.Errors)[0].ErrorContent}"
+                     />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+
+
+        <TextBox x:Name="txtEmpName" Text="{Binding Path=Code, 
+                Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnExceptions=True, 
+                NotifyOnValidationError=True}" Width="250" Height="30"
+                Margin="188,14,65,267" />
+
+    </Grid>
+</Window>
