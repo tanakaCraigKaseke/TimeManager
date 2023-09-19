@@ -10,32 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TimeManager.MainLibrary.Helpers.Validators;
 
-
-
-namespace TimeManager.WPF
+namespace TimeManager.WPF.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for LogHours.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LogHours : Window
     {
- 
-
-
-        public MainWindow()
+        public LogHours()
         {
             InitializeComponent();
-          
-            
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
- 
         }
     }
 }

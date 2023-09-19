@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\tashi\source\repos\TimeManager\TimeManager.WPF\obj\Debug\
+C:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.WPF\obj\Debug\
 TimeManager.WPF
 none
 false
 DEBUG;TRACE
-C:\Users\tashi\source\repos\TimeManager\TimeManager.WPF\App.xaml
-1219584333
+C:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.WPF\App.xaml
+5-1980577026
 
-6-451426193
-141989947153
-MainWindow.xaml;
+1351900049
+14141510062
+Views\AddModule.xaml;Views\AddSemester.xaml;Views\LogHours.xaml;Views\Semester.xaml;Views\SemesterModules.xaml;
 
-True
+False
 

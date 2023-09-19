@@ -5,15 +5,45 @@ using System.Text;
 using System.Threading.Tasks;
 using TimeManager.Data;
 using TimeManager.Data.Models;
+using TimeManager.MainLibrary.Dtos;
 using TimeManager.MainLibrary.Helpers;
 using TimeManager.MainLibrary.Interfaces;
 
 namespace TimeManager.MainLibrary.Services
 {
-    public class SemesterService : ISemesterService
+    public class SemesterService  
     {
- 
-        public DataResponse CreateOrUpdateSemester(string name, DateTime StartDate, int numberOfWeeks)
+        public static DataResponse GetAllSemesterForUser(int loggedInUserId)
+        {
+            var user = InMemoryDatabase.Users.FirstOrDefault(userdb=> userdb.Id == loggedInUserId);
+            if(user == null)
+            {
+                return new DataResponse
+                {
+                    IsSuccsesful = false,
+                    Message = "The specified user does not exists",
+                };
+            }
+
+            var semester = InMemoryDatabase.Semesters.FindAll(dbSemester => dbSemester.UserId == loggedInUserId).Select(dbSemester => new SemesterDto
+            {
+                Id = dbSemester.Id,
+                Name = dbSemester.Name,
+                Weeks = dbSemester.Weeks,
+                StartDate = dbSemester.StartDate,
+                NumberOfModules = dbSemester.Modules.Count()
+            });
+
+
+            return new DataResponse
+            {
+                IsSuccsesful = true,
+                Message = "Succesfully found the semesters",
+                Data = semester
+            };
+        }
+  
+        public static DataResponse CreateOrUpdateSemester(string name, DateTime StartDate, int numberOfWeeks)
         {
             //check if a semester with the name already exists.
             var existingSemester = InMemoryDatabase.Semesters.FirstOrDefault(x => x.Name.ToLower() == name.ToLower());
@@ -54,5 +84,16 @@ namespace TimeManager.MainLibrary.Services
             }
 
         }
+
+
+
+
+
+
+
+
+
+
+
     }
 }

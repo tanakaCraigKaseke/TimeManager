@@ -41,8 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dtos\SemesterDto.cs" />
     <Compile Include="Helpers\DataResponse.cs" />
-    <Compile Include="Helpers\Validators\ModuleValidator.cs" />
     <Compile Include="Interfaces\ILoggingService.cs" />
     <Compile Include="Interfaces\IModuleService.cs" />
     <Compile Include="Interfaces\ISemesterService.cs" />

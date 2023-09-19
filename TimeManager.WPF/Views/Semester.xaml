@@ -1,0 +1,51 @@
+﻿<Window x:Class="TimeManager.WPF.Views.Semester"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TimeManager.WPF.Views"
+        mc:Ignorable="d"
+        Title="Semesters" Height="650" Width="1000">
+
+    <Grid Background="#F5F5F5">
+        <Grid Background="White" Grid.Row="1" Margin="25,40,25,15" >
+            <TextBox Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged" Height="30" Width="200" Margin="25" VerticalAlignment="Top"  HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0" />
+            <Button 
+                Height="30"  
+                Content="Add Semester" 
+                Width="100" 
+                VerticalContentAlignment="Center" 
+                Padding="5" 
+                Margin="25" 
+                VerticalAlignment="Top" 
+                HorizontalAlignment="Right" 
+                BorderThickness="1" 
+                BorderBrush="#E0E0E0"  
+                Command="{Binding ShowAddSemesterWindow}"
+              
+             />
+            
+            <ListView Name="UserList" ItemsSource="{Binding Semesters}" BorderBrush="#cdcdcd" Margin="25,70,25,25" Padding="0">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Weeks}"  Header="Number of weeks"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding StartDate}" Header="Start date"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding NumberOfModules}" Header="Number of modules"/>
+                        <!-- Edit and Delete buttons -->
+                        <GridViewColumn Header="Actions">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="View Modules" Margin="1, 1,1,1"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
+    </Grid>
+</Window>

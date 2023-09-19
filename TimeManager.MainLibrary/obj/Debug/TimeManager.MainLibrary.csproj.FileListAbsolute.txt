@@ -7,3 +7,12 @@ C:\Users\tashi\source\repos\TimeManager\TimeManager.MainLibrary\obj\Debug\TimeMa
 C:\Users\tashi\source\repos\TimeManager\TimeManager.MainLibrary\obj\Debug\TimeManager.MainLibrary.csproj.CopyComplete
 C:\Users\tashi\source\repos\TimeManager\TimeManager.MainLibrary\obj\Debug\TimeManager.MainLibrary.dll
 C:\Users\tashi\source\repos\TimeManager\TimeManager.MainLibrary\obj\Debug\TimeManager.MainLibrary.pdb
+C:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.MainLibrary\bin\Debug\TimeManager.MainLibrary.dll
+C:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.MainLibrary\bin\Debug\TimeManager.MainLibrary.pdb
+C:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.MainLibrary\bin\Debug\TimeManager.Data.dll
+C:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.MainLibrary\bin\Debug\TimeManager.Data.pdb
+C:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.MainLibrary\obj\Debug\TimeManager.MainLibrary.csproj.AssemblyReference.cache
+C:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.MainLibrary\obj\Debug\TimeManager.MainLibrary.csproj.CoreCompileInputs.cache
+C:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.MainLibrary\obj\Debug\TimeManager.MainLibrary.csproj.CopyComplete
+C:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.MainLibrary\obj\Debug\TimeManager.MainLibrary.dll
+C:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.MainLibrary\obj\Debug\TimeManager.MainLibrary.pdb

@@ -9,6 +9,6 @@ namespace TimeManager.MainLibrary.Interfaces
 {
     public interface ISemesterService
     {
-        DataResponse CreateOrUpdateSemester(string name, DateTime startDate, int numberOfWeeks);
+        DataResponse  CreateOrUpdateSemester(string name, DateTime startDate, int numberOfWeeks);
     }
 }

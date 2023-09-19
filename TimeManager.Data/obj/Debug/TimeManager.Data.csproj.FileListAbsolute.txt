@@ -4,3 +4,9 @@ C:\Users\tashi\source\repos\TimeManager\TimeManager.Data\obj\Debug\TimeManager.D
 C:\Users\tashi\source\repos\TimeManager\TimeManager.Data\obj\Debug\TimeManager.Data.csproj.CoreCompileInputs.cache
 C:\Users\tashi\source\repos\TimeManager\TimeManager.Data\obj\Debug\TimeManager.Data.dll
 C:\Users\tashi\source\repos\TimeManager\TimeManager.Data\obj\Debug\TimeManager.Data.pdb
+C:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.Data\bin\Debug\TimeManager.Data.dll
+C:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.Data\bin\Debug\TimeManager.Data.pdb
+C:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.Data\obj\Debug\TimeManager.Data.csproj.AssemblyReference.cache
+C:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.Data\obj\Debug\TimeManager.Data.csproj.CoreCompileInputs.cache
+C:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.Data\obj\Debug\TimeManager.Data.dll
+C:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.Data\obj\Debug\TimeManager.Data.pdb
