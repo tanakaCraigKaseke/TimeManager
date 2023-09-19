@@ -64,12 +64,19 @@
     </Compile>
     <Compile Include="Commands\AddNewSemesterForm.cs" />
     <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="ViewModels\AddModuleVM.cs" />
+    <Compile Include="ViewModels\DisplayVM.cs" />
+    <Compile Include="ViewModels\SemesterModulesVM.cs" />
     <Compile Include="ViewModels\SemesterVM.cs" />
     <Compile Include="Views\AddModule.xaml.cs">
       <DependentUpon>AddModule.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AddSemester.xaml.cs">
       <DependentUpon>AddSemester.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Display.xaml.cs">
+      <DependentUpon>Display.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LogHours.xaml.cs">
       <DependentUpon>LogHours.xaml</DependentUpon>
@@ -116,6 +123,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Display.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LogHours.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -129,6 +140,11 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\TimeManager.Data\TimeManager.Data.csproj">
+      <Project>{E1FF10D8-8723-4742-A0BC-AC1265973530}</Project>
+      <Name>TimeManager.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

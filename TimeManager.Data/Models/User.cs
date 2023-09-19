@@ -12,7 +12,7 @@ namespace TimeManager.Data.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public List<UserModule> Modules { get; set; }
+        public List<Module> Modules { get; set; }
         public List<Semester> Semesters { get; set; }
     }
 }

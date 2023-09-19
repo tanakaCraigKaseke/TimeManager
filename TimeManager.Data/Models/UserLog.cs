@@ -12,8 +12,7 @@ namespace TimeManager.Data.Models
         public DateTime Date { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
-
-        public int UserModuleId { get; set; }
-        public UserModule UserModule { get; set; }
+        public int ModuleId { get; set; }
+        public Module Module { get; set; }
     }
 }

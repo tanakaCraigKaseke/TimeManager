@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace TimeManager.WPF.Views
+namespace TimeManager.WPF.ViewModels
 {
     /// <summary>
     /// Interaction logic for AddSemester.xaml

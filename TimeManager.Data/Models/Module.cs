@@ -15,14 +15,9 @@ namespace TimeManager.Data.Models
         public double Hours { get; set; }
         public int SemesterId { get; set; }
         public Semester Semester { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
+        public List<UserLog> Logs { get; set; }
 
-        public double SelfStudyHours 
-        {
-            get
-            {
-                var response = ((Credits * 10) / Semester.Weeks)  -  Hours;
-                return response;
-            }
-        }
     }
 }

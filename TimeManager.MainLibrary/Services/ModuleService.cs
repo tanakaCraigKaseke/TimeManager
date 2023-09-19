@@ -5,111 +5,124 @@ using System.Text;
 using System.Threading.Tasks;
 using TimeManager.Data;
 using TimeManager.Data.Models;
+using TimeManager.MainLibrary.Dtos;
 using TimeManager.MainLibrary.Helpers;
 using TimeManager.MainLibrary.Interfaces;
 
 namespace TimeManager.MainLibrary.Services
 {
-    public class ModuleService : IModuleService
+    public class ModuleService
     {
         public ModuleService() { }
 
 
-        public DataResponse CreateModule(string name, string code, int credits, double hours, int loggedInUserId = 1, int semesterId = 1)
+        public static DataResponse CreateModule(AddModuleDto newModule)
         {
-            //check if the module exists using Linq
-            var existingModule = InMemoryDatabase.Modules.FirstOrDefault(m => m.Name.ToLower() == name.ToLower() 
-                                                                    || m.Code.ToLower() == code.ToLower());
-            //if the module exists take the existing
-            if(existingModule != null)
+            try
             {
-                //meaning that we have a module already
-                // so we assign the module to the user
-                return AssignModuleToUser(existingModule, loggedInUserId);
-            }
-            // otherwise create the module fist find the semester to add the module to
-            var semesterToAddModule = InMemoryDatabase.Semesters.FirstOrDefault(semester=> semester.Id == semesterId);
-            // generate a new id for our in memory database
-            var newId = InMemoryDatabase.Modules.Count + 1;
-            var newModule = new Module
-            {
-                Id = newId,
-                Name = name,
-                Code = code,
-                Credits = credits,
-                Hours = hours,
-                Semester = semesterToAddModule,
-                SemesterId = semesterId
-            };
+                //check if this module belongs to the og list
+                var user = InMemoryDatabase.Users.FirstOrDefault(dbUsers => dbUsers.Id == newModule.UserId);
+                //create
+                if (!newModule.ShouldCreateNewSemester)
+                {
+                    var semester = InMemoryDatabase.Semesters.FirstOrDefault(dbSemester => dbSemester.Id == newModule.SemesterId);
+                    var newModuleId = InMemoryDatabase.Modules.Count + 1;
+                    var newModuleObject = new Module
+                    {
+                        Name = newModule.Name,
+                        Code = newModule.Code,
+                        Credits = newModule.Credits,
+                        Hours = newModule.Hours,
+                        SemesterId = newModule.SemesterId,
+                        Semester = semester,
+                        UserId = newModule.UserId,
+                        User = user,
+                        Logs = new List<UserLog>()
+                    };
 
-            // add the module to the modules table 
+                    InMemoryDatabase.Modules.Add(newModuleObject);
+                    semester.Modules.Add(newModuleObject);
+                    user.Modules.Add(newModuleObject);
 
-            InMemoryDatabase.Modules.Add(newModule);
+                    return new DataResponse
+                    {
+                        IsSuccsesful = true,
+                        Message = "Successfully added user"
+                    };
+                }
 
-            // add the module to the user
+                var newSemester = new Semester
+                {
+                    Name = newModule.SemesterName,
+                    Weeks = newModule.Weeks,
+                    StartDate = newModule.SemesterStartDate,
+                    UserId = newModule.UserId,
+                    User = user,
+                    Modules = new List<Module>()
+                };
 
-             return AssignModuleToUser(existingModule, loggedInUserId);
-        }
+                InMemoryDatabase.Semesters.Add(newSemester);
 
-        private DataResponse AssignModuleToUser(Module module, int loggedInUserId)
-        {
-            // first find the user
-            var user = InMemoryDatabase.Users.FirstOrDefault(u => u.Id == loggedInUserId);
-        
-            // check if the module exists in their list of modules
-            var existingModule = user.Modules.FirstOrDefault(m => m.ModuleId == module.Id);
-            // if the module exists do nothing, but tell them that the module already exists.
-            if (existingModule != null)
+
+                var newModuleObjectModule = new Module
+                {
+                    Name = newModule.Name,
+                    Code = newModule.Code,
+                    Credits = newModule.Credits,
+                    Hours = newModule.Hours,
+                    SemesterId = newModule.SemesterId,
+                    Semester = newSemester,
+                    UserId = newModule.UserId,
+                    User = user,
+                    Logs = new List<UserLog>()
+                };
+
+                newSemester.Modules.Add(newModuleObjectModule);
+                user.Modules.Add(newModuleObjectModule);
+
+                return new DataResponse
+                {
+                    IsSuccsesful = true,
+                    Message = "Successfully added user"
+                };
+
+            } catch (Exception ex)
             {
                 return new DataResponse
                 {
-                    IsSuccsesful = false, 
-                    Message = "Module has already been added" 
+                    IsSuccsesful = false,
+                    Message = $"Could not add a user exeption: {ex.Message}"
                 };
-            }
-            // otherwise new instance of user module and then we add the module to the users list
-
-            var newId = InMemoryDatabase.UserModules.Count + 1;
-
-            var newUserModule = new UserModule
-            {
-                Id = newId,
-                UserId = loggedInUserId,
-                User = user,
-                ModuleId = module.Id,
-                Module = module,    
             };
-
-            InMemoryDatabase.UserModules.Add(newUserModule);
-
-            user.Modules.Add(newUserModule);
-
-            return new DataResponse { Data = newUserModule, IsSuccsesful = true, Message = "Succesfully added module" };
-            
-
         }
+    
+
+
+
+
 
   
-        public DataResponse ListAllUserModules(int userId, DateTime date )
+        public static DataResponse ListAllUserModules(int userId, DateTime date )
         {
             var user = InMemoryDatabase.Users.FirstOrDefault(u => u.Id == userId);
             if(user != null)
             {
-                var module = InMemoryDatabase.UserModules.FindAll(m => m.UserId == userId)
-                                                        .Select(m => new ListModuleResponse
+                var modules = InMemoryDatabase.Modules.ToList().FindAll(m => m.UserId == userId)
+                                                        .Select(m => new UserModuleDto
                                                         {
-                                                            Name = m.Module.Name,
-                                                            Code = m.Module.Code,
-                                                            SelfSudyHours = m.Module.SelfStudyHours,
-                                                            HoursRemaining = CalculateHoursRemaining(m.Logs, m.Module.SelfStudyHours, date),
-                                                            HoursSpent = CalculateHoursSpent(m.Logs, m.Module.SelfStudyHours, date),
+                                                            Name = m.Name,
+                                                            Code = m.Code,
+                                                            SelfSudyHoursPerWeek = CalculateSelfStudyHours(m),
+                                                            HoursRemaining = CalculateHoursRemaining(m, date),
+                                                            HoursSpent = CalculateHoursSpent(m, date),
                                                             UserModuleId = m.Id,
-                                                            Credits  = m.Module.Credits
+                                                            Credits  = m.Credits
                                                         });
-                return new DataResponse
+
+                return new DataResponse  
                 {
-                    Data = module,
-                    Message = "Succesfully retrieved date",
+                    Data = modules,
+                    Message = "Succesfully retrieved modules for the specified date",
                     IsSuccsesful = true,
                 };
             }
@@ -121,14 +134,22 @@ namespace TimeManager.MainLibrary.Services
             };
         }
 
-        private double CalculateHoursRemaining(List<UserLog> logs, double selfStudyHours, DateTime date)
+        private static double CalculateSelfStudyHours(Module m)  
+        {
+ 
+                    var response = ((m.Credits * 10) / m.Semester.Weeks) - m.Hours;
+                    return response;
+ 
+        }
+
+        private static double CalculateHoursRemaining(Module m, DateTime date)
         {
 
-            return selfStudyHours - CalculateHoursSpent(logs, selfStudyHours, date);
+            return CalculateSelfStudyHours(m) - CalculateHoursSpent(m, date);
 
         }
 
-        private double CalculateHoursSpent(List<UserLog> logs, double selfStudyHours, DateTime date)
+        private static double CalculateHoursSpent(Module m, DateTime date)
         {
             // Get today's date
             DateTime currentDate = DateTime.Today;
@@ -137,7 +158,7 @@ namespace TimeManager.MainLibrary.Services
             // Calculate the end date of the current week (Saturday)
             DateTime endDateOfWeek = startDateOfWeek.AddDays(6);
 
-            var logsInCurrentWeek = logs.Where(log => log.Date >= startDateOfWeek && log.Date <= endDateOfWeek).ToList();
+            var logsInCurrentWeek = m.Logs.Where(log => log.Date >= startDateOfWeek && log.Date <= endDateOfWeek).ToList();
 
             var totalHoursSpent = logsInCurrentWeek.Sum(log => (log.EndTime - log.StartTime).TotalHours);
 

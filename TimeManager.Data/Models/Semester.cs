@@ -14,6 +14,6 @@ namespace TimeManager.Data.Models
         public DateTime StartDate { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
-        public List<UserModule> Modules { get; set; }
+        public List<Module> Modules { get; set; }
     }
 }

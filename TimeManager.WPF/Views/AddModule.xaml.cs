@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace TimeManager.WPF.Views
+namespace TimeManager.WPF.ViewModels
 {
     /// <summary>
     /// Interaction logic for AddModule.xaml
@@ -22,6 +22,8 @@ namespace TimeManager.WPF.Views
         public AddModule()
         {
             InitializeComponent();
+            var viewModelInstance = new AddModuleVM();
+            this.DataContext = viewModelInstance;
         }
     }
 }

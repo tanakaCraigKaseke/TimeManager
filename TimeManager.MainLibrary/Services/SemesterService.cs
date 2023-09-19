@@ -25,7 +25,7 @@ namespace TimeManager.MainLibrary.Services
                 };
             }
 
-            var semester = InMemoryDatabase.Semesters.FindAll(dbSemester => dbSemester.UserId == loggedInUserId).Select(dbSemester => new SemesterDto
+            var semester = InMemoryDatabase.Semesters.ToList().FindAll(dbSemester => dbSemester.UserId == loggedInUserId).Select(dbSemester => new SemesterDto
             {
                 Id = dbSemester.Id,
                 Name = dbSemester.Name,
@@ -42,6 +42,9 @@ namespace TimeManager.MainLibrary.Services
                 Data = semester
             };
         }
+
+
+ 
   
         public static DataResponse CreateOrUpdateSemester(string name, DateTime StartDate, int numberOfWeeks)
         {

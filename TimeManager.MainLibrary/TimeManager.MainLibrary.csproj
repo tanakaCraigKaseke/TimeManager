@@ -41,12 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dtos\AddModuleDto.cs" />
     <Compile Include="Dtos\SemesterDto.cs" />
+    <Compile Include="Dtos\UserModuleDto.cs" />
     <Compile Include="Helpers\DataResponse.cs" />
     <Compile Include="Interfaces\ILoggingService.cs" />
     <Compile Include="Interfaces\IModuleService.cs" />
     <Compile Include="Interfaces\ISemesterService.cs" />
-    <Compile Include="ListModuleResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\LogginService.cs" />
     <Compile Include="Services\ModuleService.cs" />

@@ -1,16 +1,18 @@
-﻿<Window x:Class="TimeManager.WPF.Views.Semester"
+﻿<Window x:Class="TimeManager.WPF.ViewModels.Semester"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TimeManager.WPF.Views"
+        xmlns:local="clr-namespace:TimeManager.WPF.ViewModels"
         mc:Ignorable="d"
         Title="Semesters" Height="650" Width="1000">
 
     <Grid Background="#F5F5F5">
         <Grid Background="White" Grid.Row="1" Margin="25,40,25,15" >
             <TextBox Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged" Height="30" Width="200" Margin="25" VerticalAlignment="Top"  HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0" />
-            <Button 
+            <!--<Button c:\users\tashi\source\repos\timemanager\timemanager.wpf\views\semester.xaml
+c:\users\tashi\source\repos\timemanager\timemanager.wpf\views\semester.xaml.cs
+
                 Height="30"  
                 Content="Add Semester" 
                 Width="100" 
@@ -21,9 +23,9 @@
                 HorizontalAlignment="Right" 
                 BorderThickness="1" 
                 BorderBrush="#E0E0E0"  
-                Command="{Binding ShowAddSemesterWindow}"
+                Command="{Binding ShowAddSemesterWindow}" Click="Button_Click"
               
-             />
+             />-->
             
             <ListView Name="UserList" ItemsSource="{Binding Semesters}" BorderBrush="#cdcdcd" Margin="25,70,25,25" Padding="0">
                 <ListView.View>

@@ -1,66 +1,71 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using TimeManager.Data.Models;
 
 namespace TimeManager.Data
 {
     public static class InMemoryDatabase
     {
+        public static ObservableCollection<User> Users { get; set; } = new ObservableCollection<User>
+        {
+            new User
+            {
+                Id = 1,
+                FirstName = "John",
+                LastName = "Doe",
+                Email = "johndoe",
+                Semesters = new List<Semester>(),
+                Modules = new List<Module>()
+            }
+        };
 
-        public static List<User> Users { get; set; } = new List<User> { new User { Id = 1, FirstName = "John", LastName = "Doe", Email = "johndoe" } };
-
-        public static List<Semester> Semesters { get; set; } = new List<Semester> { 
-            new Semester { 
-                Id = 1, 
-                Name = "Semester 1", 
+        public static ObservableCollection<Semester> Semesters { get; set; } = new ObservableCollection<Semester>
+        {
+            new Semester
+            {
+                Id = 1,
+                Name = "Semester 1",
                 StartDate = DateTime.Now,
                 UserId = 1,
                 Weeks = 10,
-                Modules = new List<UserModule>()
-                
+                Modules = new List<Module>()
             },
-            new Semester {
+            new Semester
+            {
                 Id = 2,
                 Name = "Semester 2",
                 StartDate = DateTime.Now,
                 UserId = 1,
                 Weeks = 10,
-                Modules = new List<UserModule>()
-            },
-            new Semester {
-                Id = 3,
-                Name = "Semester 3",
-                StartDate = DateTime.Now,
-                UserId = 1,
-                Weeks = 10,
-                Modules = new List<UserModule>()
-            },
-            new Semester {
-                Id = 4,
-                Name = "Semester 4",
-                StartDate = DateTime.Now,
-                UserId = 1,
-                Weeks = 10,
-                                Modules = new List<UserModule>()
-            }, 
-            new Semester {
-                Id = 5,
-                Name = "Semester 5",
-                StartDate = DateTime.Now,
-                UserId = 1,
-                Weeks = 10,
-                                Modules = new List<UserModule>()
-            },
-
+                Modules = new List<Module>()
+            }
         };
-        public static List<UserModule> UserModules { get; set; }
 
-        public static List<UserLog> UserLogs { get; set; }
-
-        public static List<Module> Modules { get; set; }
-
+        public static ObservableCollection<UserLog> UserLogs { get; set; } = new ObservableCollection<UserLog>();
+        public static ObservableCollection<Module> Modules { get; set; } = new ObservableCollection<Module>
+        {
+            new Module
+            {
+                Id = 1,
+                Name = "Programming",
+                Code = "This is the code",
+                UserId = 1,
+                Credits = 5,
+                Hours = 1.5,
+                SemesterId = 1,
+                Semester = new Semester
+                {
+                    Id = 1,
+                    Name = "Semester 1",
+                    StartDate = DateTime.Now,
+                    UserId = 1,
+                    Weeks = 10,
+                    Modules = new List<Module>()
+                },
+                User = new User(),
+                Logs = new List<UserLog>()
+            }
+        };
     }
 }
