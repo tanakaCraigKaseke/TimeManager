@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using TimeManager.MainLibrary.Helpers;
 
-namespace TimeManager.MainLibrary.Interfaces
+namespace TimeManager.MainLibrary.interfaces
 {
     public interface ISemesterService
     {
-        DataResponse  CreateOrUpdateSemester(string name, DateTime startDate, int numberOfWeeks);
+        Task<DataResponse> GetAllSemesterForUser(int loggedInUserId);
+
+        DataResponse CreateOrUpdateSemester(string name, DateTime StartDate, int numberOfWeeks);
     }
 }

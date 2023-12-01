@@ -19,6 +19,8 @@ namespace TimeManager.MainLibrary.Dtos
         public string SemesterName { get; set; }
         public DateTime SemesterStartDate { get; set; }
         public int Weeks { get; set; }
-        public bool ShouldCreateNewSemester { get; set; }
+        public bool ShouldCreateNewSemester { get; set; } = true;
+
+
     }
 }

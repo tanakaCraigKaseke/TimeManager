@@ -1,0 +1,25 @@
+﻿<Window x:Class="TimeManager.WPF.Views.welcome"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TimeManager.WPF.Views"
+        xmlns:signIn="clr-namespace:TimeManager.WPF.Shared.Forms.SignIn"
+        xmlns:signUp="clr-namespace:TimeManager.WPF.Shared.Forms.SignUp"
+        xmlns:viewModels ="clr-namespace:TimeManager.WPF.ViewModels"
+        xmlns:views ="clr-namespace:TimeManager.WPF.Views"
+        mc:Ignorable="d"
+        Title="welcome" Height="650" Width="1000">
+
+    <ContentControl Content="{Binding CurrentViewModel}">
+        <ContentControl.Resources>
+            <DataTemplate DataType="{x:Type signIn:SignInViewModel}">
+                <signIn:SignInFormView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type signUp:SignUpFormViewModel}">
+                <views:SignUpPage />
+            </DataTemplate>
+        </ContentControl.Resources> 
+
+    </ContentControl>
+</Window>

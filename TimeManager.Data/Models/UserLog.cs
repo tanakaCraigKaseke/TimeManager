@@ -10,9 +10,8 @@ namespace TimeManager.Data.Models
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
-        public TimeSpan StartTime { get; set; }
-        public TimeSpan EndTime { get; set; }
+        public double HoursSpent { get; set; }
         public int ModuleId { get; set; }
         public Module Module { get; set; }
-    }
+    }  
 }

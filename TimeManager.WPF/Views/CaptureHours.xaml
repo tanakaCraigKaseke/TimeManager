@@ -1,0 +1,54 @@
+﻿<Window x:Class="TimeManager.WPF.ViewModels.CaptureHours"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TimeManager.WPF.ViewModels"
+        mc:Ignorable="d"
+        Title="Capture Hours" Height="450" Width="800">
+    <Window.Resources>
+        <DataTemplate x:Key="ComboBoxItemTemplate">
+            <TextBlock Text="{Binding Name}" />
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Image Source="../Images/background3.png" Stretch="UniformToFill" />
+
+        <Label Content="Select Module" HorizontalAlignment="Left" Margin="38,78,0,0" VerticalAlignment="Top"/>
+
+        <ComboBox ItemsSource="{Binding UserModules}"
+                          ItemTemplate="{StaticResource ComboBoxItemTemplate}"
+                          HorizontalAlignment="Left" Margin="38,104,0,0" VerticalAlignment="Top" Width="342"                          
+                          SelectedItem="{Binding SelectedModule, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"  />
+        <TextBlock Text="{Binding  SelectedModuleErrorMessage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Foreground="Red" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="38,130,0,0"/>
+
+        <DatePicker Text="{Binding SelectedDate}" HorizontalAlignment="Left" Margin="38,181,0,0" VerticalAlignment="Top"/>
+        <Label Content="Date" HorizontalAlignment="Left" Margin="38,150,0,0" VerticalAlignment="Top"/>
+
+        <Label Content="Hours spent"  HorizontalAlignment="Left" Margin="38,230,0,0" VerticalAlignment="Top"/>
+        <TextBox 
+            Text="{Binding HoursSpentInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+            TextWrapping="Wrap"   
+            Margin="38,261,388,0" 
+            Height="30" 
+            VerticalAlignment="Top"           
+           />
+        <TextBlock Text="{Binding  HoursSpentInputError, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Foreground="Red" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="38,291,0,0"/>
+        <Button Content="Submit" HorizontalAlignment="Left" Margin="38,327,0,0" VerticalAlignment="Top" Width="106" Command="{Binding LogHoursCommand}" />
+        <Label Content="Remaining Hours" HorizontalAlignment="Left" Margin="466,100,0,0" VerticalAlignment="Top" Width="107"/>
+        <TextBlock 
+            HorizontalAlignment="Left"
+            Margin="578,83,0,0" 
+            TextWrapping="Wrap" 
+            FontSize="40"
+            FontWeight="Bold"  
+            Text="{Binding HoursRemainingText}" 
+      
+            VerticalAlignment="Top"/>
+
+
+        <Button Content="Cancel" Background="PaleGreen" HorizontalAlignment="Left" Margin="170,327,0,0" VerticalAlignment="Top"  Command="{Binding CancelCommand}"  Width="98"/>
+
+
+    </Grid>
+</Window>

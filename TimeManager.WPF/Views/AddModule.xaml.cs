@@ -15,15 +15,22 @@ using System.Windows.Shapes;
 namespace TimeManager.WPF.ViewModels
 {
     /// <summary>
-    /// Interaction logic for AddModule.xaml
+    /// This class represents the window for adding a new module in the application.
     /// </summary>
     public partial class AddModule : Window
     {
         public AddModule()
         {
             InitializeComponent();
+
+            // Create an instance of the AddModuleVM ViewModel.
             var viewModelInstance = new AddModuleVM();
+
+            // Set the DataContext of this window to the ViewModel instance.
             this.DataContext = viewModelInstance;
+
+            // Subscribe to the RequestClose event of the ViewModel to close the window.
+            viewModelInstance.RequestClose += (sender, e) => Close();
         }
     }
 }

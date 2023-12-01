@@ -15,6 +15,6 @@ namespace TimeManager.MainLibrary.Dtos
         public string Name { get; set; }
         public int Weeks { get; set; }
         public DateTime StartDate { get; set; }
-        public int NumberOfModules { get; set; }
+        public int NumberOfModules { get; set; } = 0;
     }
 }

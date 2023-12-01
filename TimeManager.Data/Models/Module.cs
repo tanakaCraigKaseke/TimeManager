@@ -19,5 +19,23 @@ namespace TimeManager.Data.Models
         public User User { get; set; }
         public List<UserLog> Logs { get; set; }
 
+       
+
+        public double SelfStudyHours
+        {
+            get 
+            { 
+                return CalculateSelfStudyHours(this);
+            }
+        
+        }
+
+
+        private static double CalculateSelfStudyHours(Module m)
+        {
+            var response = ((m.Credits * 10) / m.Semester.Weeks) - m.Hours;
+            return response;
+        }
+
     }
 }

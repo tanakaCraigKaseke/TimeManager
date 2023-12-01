@@ -1,9 +1,10 @@
 ﻿
-FC:\Users\tashi\source\repos\TimeManager\TimeManager.WPF\App.xaml;;
-FC:\Users\tashi\source\repos\TimeManager\TimeManager.WPF\Views\AddModule.xaml;;
-FC:\Users\tashi\source\repos\TimeManager\TimeManager.WPF\Views\AddSemester.xaml;;
-FC:\Users\tashi\source\repos\TimeManager\TimeManager.WPF\Views\Display.xaml;;
-FC:\Users\tashi\source\repos\TimeManager\TimeManager.WPF\Views\LogHours.xaml;;
-FC:\Users\tashi\source\repos\TimeManager\TimeManager.WPF\Views\Semester.xaml;;
-FC:\Users\tashi\source\repos\TimeManager\TimeManager.WPF\Views\SemesterModules.xaml;;
+
+FC:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.WPF\Shared\Forms\SignUp\SignUpForm.xaml;;
+FC:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.WPF\Views\AddModule.xaml;;
+FC:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.WPF\Views\CaptureHours.xaml;;
+FC:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.WPF\Views\HomeController.xaml;;
+FC:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.WPF\Views\Modules.xaml;;
+FC:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.WPF\Views\SignUpPage.xaml;;
+FC:\Users\tanakakaseke\Desktop\work\princess\TimeManager\TimeManager.WPF\Views\welcome.xaml;;
 

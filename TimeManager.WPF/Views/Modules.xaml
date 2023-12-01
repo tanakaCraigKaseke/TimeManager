@@ -1,0 +1,90 @@
+﻿<Window x:Class="TimeManager.WPF.ViewModels.Modules"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TimeManager.WPF.ViewModels"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        Title="Modules" Height="750" Width="1200">
+    <Window.Resources>
+        <DataTemplate x:Key="ComboBoxItemTemplate">
+            <TextBlock Text="{Binding Name}" />
+        </DataTemplate>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Window.Resources>
+
+
+
+    <Grid Background="#F5F5F5">
+        <Image Source="../Images/background3.png" Stretch="UniformToFill" />
+
+        <Grid Background="Transparent" Grid.Row="1" Margin="25,40,25,15" >
+
+            <Button 
+                Height="30"  
+                Content="Capture hours" 
+                Width="100" 
+                VerticalContentAlignment="Center"
+                Padding="5" 
+                Margin="0,25,292,0" 
+                VerticalAlignment="Top" 
+                HorizontalAlignment="Right" 
+                BorderThickness="1" 
+                BorderBrush="#E0E0E0"
+                Command="{Binding ShowCaptureHoursWindow}" RenderTransformOrigin="0.467,0.601"  
+  
+                
+              
+             />
+
+            <Button 
+                Height="30"  
+                Content="Add Module" 
+                Width="100" 
+                VerticalContentAlignment="Center" 
+                Padding="5" 
+                Margin="0,25,116,0" 
+                VerticalAlignment="Top" 
+                HorizontalAlignment="Right" 
+                BorderThickness="1" 
+                BorderBrush="#E0E0E0"  
+                Command="{Binding ShowAddModuleWindow}" 
+              
+             />
+
+            <ListView Background="Transparent" Name="UserList" ItemsSource="{Binding DisplayedData}" BorderBrush="#cdcdcd" Margin="25,70,116,25" Padding="0">
+                <ListView.View>
+                    <GridView>
+
+                        <GridViewColumn DisplayMemberBinding="{Binding SemesterName}" Header="Semester Name"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Module Name"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Code}"  Header="Module Code"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Credits}" Header="Module Credits"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding SelfSudyHoursPerWeek}" Header="Self study hours per week"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding HoursRemaining}" Header="Hours Remaining"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding HoursSpent}" Header="Number of hours spent"/>
+
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Button Content="Clear filter" Command="{Binding ClearFilters}" HorizontalAlignment="Left" Margin="368,25,0,0" VerticalAlignment="Top"/>
+
+        </Grid>
+        <ComboBox 
+                ItemsSource="{Binding Semesters}" 
+                HorizontalAlignment="Left"  
+
+                Margin="169,68,0,0"
+                VerticalAlignment="Top" 
+                Width="208" 
+                Height="25" 
+                ItemTemplate="{StaticResource ComboBoxItemTemplate}"
+                SelectedItem="{Binding SelectedSemester, UpdateSourceTrigger=PropertyChanged}"
+         />
+        <Label  Content="Filter by semester: " HorizontalAlignment="Left" Margin="49,68,0,0" VerticalAlignment="Top" Width="115"/>
+
+    </Grid>
+
+</Window>

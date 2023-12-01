@@ -5,72 +5,85 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimeManager.WPF.ViewModels"
         mc:Ignorable="d"
-        Title="Add Module" Height="450" Width="800">
+        Title="Add Module" Height="750" Width="1000">
 
     <Window.Resources>
         <DataTemplate x:Key="ComboBoxItemTemplate">
             <TextBlock Text="{Binding Name}" />
         </DataTemplate>
-        
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Window.Resources>
 
     <Grid>
 
+        <Image Source="../Images/background3.png" Stretch="UniformToFill" />
+
         <StackPanel Margin="10">
-            <TextBlock Text="Module Information" FontWeight="Bold" FontSize="16" />
+            <TextBlock Text="Module Information" FontWeight="Bold" FontSize="12" />
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Name:" Margin="0,5" Width="80" VerticalAlignment="Center" />
-                <TextBox Text="{Binding Name}" Margin="0,5" Width="200" />
+                <TextBox Text="{Binding Name, Mode=TwoWay,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,5" Width="200" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding NameErrorMessage, Mode=OneWay , ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="816" Foreground="Red" Height="15" />
+
+            <StackPanel Margin="0,10" Orientation="Horizontal">
                 <TextBlock Text="Code:" Margin="0,5" Width="80" VerticalAlignment="Center" />
-                <TextBox Text="{Binding Code}" Margin="0,5" Width="200" />
+                <TextBox Text="{Binding Code,Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,5" Width="200" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding CodeErrorMessage, Mode=OneWay , ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="816" Foreground="Red" Height="15" />
+
+            <StackPanel Margin="0,10" Orientation="Horizontal">
                 <TextBlock Text="Credits:" Margin="0,5" Width="80" VerticalAlignment="Center" />
-                <TextBox Text="{Binding Credits}" Margin="0,5" Width="200" />
+                <TextBox Text="{Binding CreditsInput, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,5" Width="200" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Hours:" Margin="0,5" Width="80" VerticalAlignment="Center" />
-                <TextBox Text="{Binding Hours}" Margin="0,5" Width="200" />
+            <TextBlock Text="{Binding CreditsErrorMessage, Mode=OneWay , ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="816" Foreground="Red" Height="15" />
+
+            <StackPanel Margin="0,10" Orientation="Horizontal">
+                <TextBlock Text="Class Hours per week:" Margin="0,5" Width="80" VerticalAlignment="Center" />
+                <TextBox Text="{Binding HoursInput, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="200" />
             </StackPanel>
+            <TextBlock Text="{Binding HoursErrorMessage, Mode=OneWay , ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="816" Foreground="Red" Height="15" />
 
-            <TextBlock Text="Select Semester Option" FontWeight="Bold" FontSize="16" Margin="0,10"/>
-            <RadioButton Content="Add to Existing Semester" IsChecked="{Binding AddToExistingSemester}" Margin="0,5" />
-            <RadioButton Content="Create a New Semester" IsChecked="{Binding CreateNewSemester}" Margin="0,5" />
+            <TextBlock Text="Select Semester Option" FontWeight="Bold" FontSize="12" Margin="0,10"/>
+            <RadioButton Content="Use existing semester information" IsChecked="{Binding AddToExistingSemester}" Margin="0,5" />
+            <RadioButton Content="Add new semester information" IsChecked="{Binding CreateNewSemester}" Margin="0,5" />
 
-            <StackPanel x:Name="ExistingSemesterPanel" Margin="0,10" Visibility="{Binding IsExistingSemesterVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <TextBlock Text="Select Existing Semester" FontWeight="Bold" FontSize="16" />
+            <StackPanel x:Name="ExistingSemesterPanel" Margin="0,10"  Visibility="{Binding AddToExistingSemester, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                <TextBlock Text="Select Existing Semester" FontWeight="Bold" FontSize="12" />
                 <ComboBox ItemsSource="{Binding ExistingSemesters}"
                           ItemTemplate="{StaticResource ComboBoxItemTemplate}"
-                          SelectedValuePath="Id"
                           SelectedItem="{Binding SelectedSemester}" />
             </StackPanel>
 
-            <StackPanel x:Name="NewSemesterPanel" Margin="0,10" Visibility="{Binding IsNewSemesterVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <TextBlock Text="New Semester Information" FontWeight="Bold" FontSize="16" />
+            <StackPanel x:Name="NewSemesterPanel" Margin="0,10">
+                <TextBlock Text="Semester Information" FontWeight="Bold" FontSize="12" />
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Name:" Margin="0,5" Width="80" VerticalAlignment="Center" />
-                    <TextBox Text="{Binding NewSemesterName}" Margin="0,5" Width="200" />
+                    <TextBox IsEnabled="{Binding CreateNewSemester}" Text="{Binding NewSemesterName, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,5" Width="200" />
                 </StackPanel>
+                <TextBlock Visibility="{Binding CreateNewSemester, Converter={StaticResource BooleanToVisibilityConverter}}" Text="{Binding  NewSemesterNameErrorMessage, Mode=OneWay ,  UpdateSourceTrigger=PropertyChanged}" Width="816" Foreground="Red" Height="15" />
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Weeks:" Margin="0,5" Width="80" VerticalAlignment="Center" />
-                    <TextBox Text="{Binding NewSemesterWeeks}" Margin="0,5" Width="200" />
+                    <TextBox IsEnabled="{Binding CreateNewSemester}" Text="{Binding NewSemesterWeeks, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,5" Width="200" />
                 </StackPanel>
+                <TextBlock Visibility="{Binding CreateNewSemester, Converter={StaticResource BooleanToVisibilityConverter}}" Text="{Binding  NewSemesterNumberOfWeeksErrorMessage, Mode=OneWay , ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="816" Foreground="Red" Height="15" />
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Start Date:" Margin="0,5" Width="80" VerticalAlignment="Center" />
-                    <DatePicker SelectedDate="{Binding NewSemesterStartDate}" Margin="0,5" Width="200" />
+                    <DatePicker IsEnabled="{Binding CreateNewSemester}" SelectedDate="{Binding NewSemesterStartDate, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,5" Width="200" />
                 </StackPanel>
+                <TextBlock Visibility="{Binding CreateNewSemester, Converter={StaticResource BooleanToVisibilityConverter}}" Text="{Binding  NewSemesterStartDateErrorMessage, Mode=OneWay , ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="816" Foreground="Red" Height="15" />
             </StackPanel>
-            
-            
 
-            <Button Content="Submit" Command="{Binding SubmitCommand}" Width="100" Height="30" Margin="0,20" />
-            <Button Content="Cancel" Command="{Binding CancelCommand}" Width="100" Height="30" Margin="10,20" />
 
         </StackPanel>
-       
+
+
+    
+            <Button Content="Submit" HorizontalAlignment="Left" Margin="22,604,0,0" VerticalAlignment="Top" Width="80" Command="{Binding SubmitCommand}" />
+            <Button Content="Cancel" HorizontalAlignment="Left" Margin="180,604,0,0" VerticalAlignment="Top"  Width="80" Command="{Binding CancelCommand}"/>
+ 
+
+
 
     </Grid>
 </Window>
